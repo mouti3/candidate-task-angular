@@ -9,7 +9,7 @@ const routes: Routes = [
       import('./users/users.module').then((m) => m.UsersModule),
   },
   {
-    path: 'users/:id',
+    path: 'users/:userId',
     loadChildren: () => import('./user-detail/user-detail.module').then((m) => m.UserDetailModule),
   },
   { path: '**', redirectTo: '/users' }      

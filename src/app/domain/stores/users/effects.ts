@@ -6,7 +6,7 @@ import { usersActions } from "./actions";
 import { GetUsersResponseInterface } from "src/generated/models/getUsersResponse.interface";
 
 @Injectable()
-export class UserEffects {
+export class UsersEffects {
   constructor(private actions$: Actions, private userService: UsersService) {}
 
   getUsers$ = createEffect(

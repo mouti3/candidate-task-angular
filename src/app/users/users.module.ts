@@ -5,7 +5,7 @@ import { SharedModule } from '../shared/shared.module';
 import { StoreModule } from '@ngrx/store';
 import { usersReducer } from '../domain/stores/users/reducers';
 import { EffectsModule } from '@ngrx/effects';
-import { UserEffects } from '../domain/stores/users/effects';
+import { UsersEffects } from '../domain/stores/users/effects';
 import { filtersReducer } from '../domain/stores/filters/reducers';
 import { FiltersEffects } from '../domain/stores/filters/effects';
 import { UsersComponent } from './components/users/users.component';
@@ -21,7 +21,7 @@ import { UsersComponent } from './components/users/users.component';
     UsersRoutingModule,
     StoreModule.forFeature('users', usersReducer),
     StoreModule.forFeature('filters', filtersReducer),
-    EffectsModule.forFeature([UserEffects,FiltersEffects]),
+    EffectsModule.forFeature([UsersEffects,FiltersEffects]),
   ]
 })
 export class UsersModule { }
