@@ -1,4 +1,4 @@
-import { NotificationService } from './../../shared/notification.service';
+import { NotificationService } from '../../shared/services/notification.service';
 import {
   HttpErrorResponse,
   HttpEvent,

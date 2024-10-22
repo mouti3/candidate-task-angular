@@ -63,3 +63,28 @@ state management, reactive programming, and writing unit tests.
 - **User Experience:** Aesthetic and functional UI/UX design. Responsive UI is not necessary in this task.
 
 Good luck! We look forward to reviewing your submission.
+
+## Project setup
+
+### **Installation**
+
+1. **Install dependencies**:
+
+   ```
+   npm install
+   ```
+2. **Running the application**:
+
+   ```
+   npm start
+   ```
+3. **Building the application**:
+
+   ```
+   npm run build
+   ```
+4. **Test the application**:
+
+   ```
+   npm run test
+   ```

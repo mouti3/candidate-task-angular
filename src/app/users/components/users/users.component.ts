@@ -25,6 +25,7 @@ import { ColumnInterface } from 'src/app/shared/models/column.interface';
 import { FilterValueInterface } from 'src/app/shared/models/filter-value.interface';
 import { FilterInterface } from 'src/app/shared/models/filter.interface';
 import { PaginationInterface } from 'src/app/shared/models/pagination.interface';
+import { StorageService } from 'src/app/shared/services/storage.service';
 import { BackendErrorsInterface } from 'src/generated/models/backend-errors.interface';
 import { GetUsersResponseInterface } from 'src/generated/models/getUsersResponse.interface';
 
@@ -32,7 +33,7 @@ import { GetUsersResponseInterface } from 'src/generated/models/getUsersResponse
   selector: 'userlane-users',
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UsersComponent implements OnInit {
   public columnsConfig: ColumnInterface[] = [
@@ -59,7 +60,11 @@ export class UsersComponent implements OnInit {
     data: FilterInterface[];
   }>;
 
-  constructor(private store: Store, private router: Router) {
+  constructor(
+    private store: Store,
+    private router: Router,
+    private storageService: StorageService
+  ) {
     this.filter$ = combineLatest({
       loading: this.store.select(selectFilterLoading),
       error: this.store.select(selectFilterError),
@@ -79,6 +84,8 @@ export class UsersComponent implements OnInit {
   }
 
   loadUsers() {
+    this.pageSize = this.storageService.getFromSessionStorage('pageSize') ? +this.storageService.getFromSessionStorage('pageSize')!  : 10;
+    this.pageNumber = this.storageService.getFromSessionStorage('pageNumber') ? +this.storageService.getFromSessionStorage('pageNumber')!  : 0;
     const paramsUrl = this.buildParams();
     this.store.dispatch(usersActions.getUsers({ paramsUrl }));
   }
@@ -90,6 +97,8 @@ export class UsersComponent implements OnInit {
   public onPaginationHandler(pagination: PaginationInterface): void {
     this.pageSize = pagination.pageSize;
     this.pageNumber = pagination.pageNumber;
+    this.storageService.storeInSessionStorage('pageSize', `${this.pageSize}`);
+    this.storageService.storeInSessionStorage('pageNumber', `${this.pageNumber}`);
     this.loadUsers();
   }
 
