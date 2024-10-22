@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { ColumnInterface } from '../../models/column.interface';
 import { PaginationInterface } from '../../models/pagination.interface';
@@ -6,12 +13,9 @@ import { PaginationInterface } from '../../models/pagination.interface';
 @Component({
   selector: 'userlane-table',
   templateUrl: './userlane-table.component.html',
-  styleUrl: './userlane-table.component.css'
+  styleUrl: './userlane-table.component.css',
 })
 export class UserlaneTableComponent implements OnInit {
-onSelectRow(_t24: any) {
-throw new Error('Method not implemented.');
-}
   @Input() columns: ColumnInterface[] = [];
   @Input() data: any[] = [];
   @Input()
@@ -21,6 +25,8 @@ throw new Error('Method not implemented.');
 
   @Output() onPaginationChanged: EventEmitter<PaginationInterface> =
     new EventEmitter();
+
+  @Output() onSelectedRowItemId: EventEmitter<string> = new EventEmitter();
 
   displayedColumns: string[] = [];
 
@@ -34,8 +40,12 @@ throw new Error('Method not implemented.');
 
   onPaginationChange($event: PageEvent) {
     this.onPaginationChanged.emit({
-      pageNumber:  $event.pageIndex,
+      pageNumber: $event.pageIndex,
       pageSize: $event.pageSize,
     });
+  }
+
+  onSelectRow({ id }: { id: string }) {
+    this.onSelectedRowItemId.emit(id);
   }
 }

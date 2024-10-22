@@ -1,0 +1,20 @@
+.table-container {
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+
+    .empty-table {
+        text-align: center;
+        font-style: italic;
+        color: gray;
+        padding: 50px;
+    }
+
+    .row-item {
+        cursor: pointer;
+
+        &:hover {
+            background-color: aliceblue;
+        }
+    }
+}

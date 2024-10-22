@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import {
   combineLatest,
@@ -57,7 +58,7 @@ export class UsersComponent implements OnInit {
     data: FilterInterface[];
   }>;
 
-  constructor(private store: Store) {
+  constructor(private store: Store, private router: Router) {
     this.filter$ = combineLatest({
       loading: this.store.select(selectFilterLoading),
       error: this.store.select(selectFilterError),
@@ -97,6 +98,10 @@ export class UsersComponent implements OnInit {
         ? ''
         : `/filter?key=${filter.key}&value=${filter.value}`;
     this.loadUsers();
+  }
+
+  onSelectUser(userId: string) {
+    this.router.navigate(['/users', userId]);
   }
 
   private buildParams(): string {
