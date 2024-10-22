@@ -1,0 +1,26 @@
+<form [formGroup]="formFilter">
+    <div class="search-container">
+      <mat-form-field>
+        <mat-label>Filter By</mat-label>
+        <mat-select formControlName="key" (selectionChange)="onSelectFilterType($event)">
+          <mat-option *ngFor="let filter of filters" [value]="filter.key">{{ filter.key }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+        <mat-form-field class="example-full-width" *ngIf="formFilter.value.key !== 'none'">
+          <mat-label>Filter By</mat-label>
+          <input
+            type="text"
+            placeholder="Pick one"
+            aria-label="filterValue"
+            matInput
+            formControlName="value"
+            [matAutocomplete]="auto"
+          />
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions"[value]="option"  (onSelectionChange)="onSelectFilterValue(option)">{{ option }}</mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+    </div>
+    </form>
+    
+    

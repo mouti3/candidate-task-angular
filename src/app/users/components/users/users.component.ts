@@ -21,6 +21,7 @@ import {
   selectUsersLoading,
 } from 'src/app/domain/stores/users/selectors';
 import { ColumnInterface } from 'src/app/shared/models/column.interface';
+import { FilterValueInterface } from 'src/app/shared/models/filter-value.interface';
 import { FilterInterface } from 'src/app/shared/models/filter.interface';
 import { PaginationInterface } from 'src/app/shared/models/pagination.interface';
 import { BackendErrorsInterface } from 'src/generated/models/backend-errors.interface';
@@ -32,7 +33,6 @@ import { GetUsersResponseInterface } from 'src/generated/models/getUsersResponse
   styleUrl: './users.component.css',
 })
 export class UsersComponent implements OnInit {
-
   public columnsConfig: ColumnInterface[] = [
     { columnDef: 'id', header: 'ID' },
     { columnDef: 'username', header: 'Name' },
@@ -45,14 +45,25 @@ export class UsersComponent implements OnInit {
   public pageSize: number = 10;
   public filterParams: string = '';
 
-
   data$: Observable<{
     loading: boolean;
     error: BackendErrorsInterface | null;
     data: GetUsersResponseInterface | null;
   }>;
 
+  filter$: Observable<{
+    loading: boolean;
+    error: BackendErrorsInterface | null;
+    data: FilterInterface[];
+  }>;
+
   constructor(private store: Store) {
+    this.filter$ = combineLatest({
+      loading: this.store.select(selectFilterLoading),
+      error: this.store.select(selectFilterError),
+      data: this.store.select(selectFilterData),
+    });
+
     this.data$ = combineLatest({
       loading: this.store.select(selectUsersLoading),
       error: this.store.select(selectUsersError),
@@ -80,13 +91,20 @@ export class UsersComponent implements OnInit {
     this.loadUsers();
   }
 
+  public onFilterHandler(filter: FilterValueInterface): void {
+    this.filterParams =
+      filter.key === 'none'
+        ? ''
+        : `/filter?key=${filter.key}&value=${filter.value}`;
+    this.loadUsers();
+  }
+
   private buildParams(): string {
     const pagination = `limit=${this.pageSize}&skip=${
-      (this.pageNumber * this.pageSize)
+      this.pageNumber * this.pageSize
     }`;
     return this.filterParams
       ? `${this.filterParams}&${pagination}`
       : `?${pagination}`;
   }
-
 }

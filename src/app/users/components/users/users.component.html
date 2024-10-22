@@ -1,4 +1,11 @@
 <div class="users-container">
+    <ng-container *ngIf="filter$ | async as filter">
+        <userlane-filter
+        *ngIf="filter.data"
+          [filters]="filter.data"
+          (onFilterChanged)="onFilterHandler($event)"
+        ></userlane-filter>
+      </ng-container>
   <ng-container *ngIf="data$ | async as data">
     <div *ngIf="data.loading">...Loading</div>
     <div *ngIf="data.error">
