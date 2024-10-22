@@ -6,6 +6,9 @@ import { StoreModule } from '@ngrx/store';
 import { usersReducer } from '../domain/stores/users/reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { UserEffects } from '../domain/stores/users/effects';
+import { filtersReducer } from '../domain/stores/filters/reducers';
+import { FiltersEffects } from '../domain/stores/filters/effects';
+
 
 
 
@@ -16,7 +19,8 @@ import { UserEffects } from '../domain/stores/users/effects';
     UsersRoutingModule,
     SharedModule,
     StoreModule.forFeature('users', usersReducer),
-    EffectsModule.forFeature([UserEffects]),
+    StoreModule.forFeature('filters', filtersReducer),
+    EffectsModule.forFeature([UserEffects,FiltersEffects]),
   ]
 })
 export class UsersModule { }
