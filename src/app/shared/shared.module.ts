@@ -15,6 +15,7 @@ import {
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [UserlaneTableComponent, UserlaneFilterComponent],
@@ -30,6 +31,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatCardModule,
     MatButtonModule,
     MatDatepickerModule,
+    MatSnackBarModule
   ],
   providers: [
     provideNativeDateAdapter(),

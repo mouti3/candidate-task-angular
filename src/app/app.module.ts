@@ -8,6 +8,8 @@ import { ApiModule } from 'src/generated/api.module';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ErrorInterceptor } from './domain/interceptors/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     StoreDevtoolsModule.instrument({ maxAge: 25 }) 
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true } 
   ],
   bootstrap: [AppComponent]
 })
