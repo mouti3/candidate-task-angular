@@ -107,6 +107,8 @@ export class UsersComponent implements OnInit {
       filter.key === 'none'
         ? ''
         : `/filter?key=${filter.key}&value=${filter.value}`;
+    this.storageService.clearFromSessionStorage('pageSize');
+    this.storageService.clearFromSessionStorage('pageNumber');
     this.loadUsers();
   }
 
