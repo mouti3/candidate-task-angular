@@ -31,7 +31,7 @@ import { GetUsersResponseInterface } from 'src/generated/models/getUsersResponse
 @Component({
   selector: 'userlane-users',
   templateUrl: './users.component.html',
-  styleUrl: './users.component.css',
+  styleUrl: './users.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UsersComponent implements OnInit {

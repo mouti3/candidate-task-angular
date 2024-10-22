@@ -6,7 +6,7 @@ import { UserInterface } from 'src/generated/models/user.interface';
 @Component({
   selector: 'userlane-user-detail-form',
   templateUrl: './user-detail-form.component.html',
-  styleUrl: './user-detail-form.component.css',
+  styleUrl: './user-detail-form.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserDetailFormComponent implements OnInit {

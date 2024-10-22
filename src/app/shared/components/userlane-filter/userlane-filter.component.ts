@@ -7,7 +7,7 @@ import { FilterValueInterface } from '../../models/filter-value.interface';
 @Component({
   selector: 'userlane-filter',
   templateUrl: './userlane-filter.component.html',
-  styleUrl: './userlane-filter.component.css',
+  styleUrl: './userlane-filter.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserlaneFilterComponent {

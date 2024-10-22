@@ -10,7 +10,7 @@ import { UserInterface } from 'src/generated/models/user.interface';
 @Component({
   selector: 'userlane-user-detail',
   templateUrl: './user-detail.component.html',
-  styleUrl: './user-detail.component.css',
+  styleUrl: './user-detail.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserDetailComponent {

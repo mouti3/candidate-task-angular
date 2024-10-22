@@ -14,7 +14,7 @@ import { PaginationInterface } from '../../models/pagination.interface';
 @Component({
   selector: 'userlane-table',
   templateUrl: './userlane-table.component.html',
-  styleUrl: './userlane-table.component.css',
+  styleUrl: './userlane-table.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserlaneTableComponent implements OnInit {
