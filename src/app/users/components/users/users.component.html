@@ -1,1 +1,19 @@
-<p>users works!</p>
+<div class="users-container">
+  <ng-container *ngIf="data$ | async as data">
+    <div *ngIf="data.loading">...Loading</div>
+    <div *ngIf="data.error">
+      {{ data.error | json }}
+    </div>
+    <ng-container *ngIf="data.data as data">
+      <userlane-table
+        [columns]="columnsConfig"
+        [data]="data.users"
+        [totalData]="data.total"
+        [pageSize]="pageSize"
+        [pageNumber]="pageNumber"
+        (onPaginationChanged)="onPaginationHandler($event)"
+      >
+      </userlane-table>
+    </ng-container>
+  </ng-container>
+</div>

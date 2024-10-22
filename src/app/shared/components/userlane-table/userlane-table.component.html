@@ -1,0 +1,21 @@
+<div class="table-container">
+    <table mat-table [dataSource]="data" class="mat-elevation-z8">
+  
+      <ng-container *ngFor="let column of columns" [matColumnDef]="column.columnDef">
+        <th mat-header-cell *matHeaderCellDef> {{ column.header }} </th>
+        <td mat-cell *matCellDef="let element"> {{ element[column.columnDef] }} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  
+      <tr class="row-item" mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onSelectRow(row)"></tr>
+
+      <tr *matNoDataRow >
+        <td class="empty-table" [colSpan]="columns.length" [rowSpan]="1">
+          No data available
+        </td>
+      </tr>
+    </table>
+  
+    <mat-paginator [length]="totalData" [pageSize]="pageSize" [pageIndex]="pageNumber" [pageSizeOptions]="[5, 10, 20]" (page)="onPaginationChange($event)"></mat-paginator>
+  </div>

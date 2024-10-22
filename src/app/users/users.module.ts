@@ -8,16 +8,17 @@ import { EffectsModule } from '@ngrx/effects';
 import { UserEffects } from '../domain/stores/users/effects';
 import { filtersReducer } from '../domain/stores/filters/reducers';
 import { FiltersEffects } from '../domain/stores/filters/effects';
+import { UsersComponent } from './components/users/users.component';
 
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [UsersComponent],
   imports: [
     CommonModule,
-    UsersRoutingModule,
     SharedModule,
+    UsersRoutingModule,
     StoreModule.forFeature('users', usersReducer),
     StoreModule.forFeature('filters', filtersReducer),
     EffectsModule.forFeature([UserEffects,FiltersEffects]),
