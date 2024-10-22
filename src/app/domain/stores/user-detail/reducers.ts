@@ -34,4 +34,22 @@ export const userDetailReducer = createReducer(
       loading: false,
       error,
     })),
+
+    on(userDetailActions.updateUserDetail, (state) => ({
+        ...state,
+        loading: true,
+        error: null,
+      })),
+      on(userDetailActions.updateUserDetailSuccess, (state, { data }) => {
+        return ({
+          ...state,
+          loading: false,
+          data,
+        })
+      }),
+      on(userDetailActions.updateUserDetailFailure, (state, {error}) => ({
+        ...state,
+        loading: false,
+        error,
+      })),
   );

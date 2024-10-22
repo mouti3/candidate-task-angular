@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   EventEmitter,
   Input,
@@ -14,6 +15,7 @@ import { PaginationInterface } from '../../models/pagination.interface';
   selector: 'userlane-table',
   templateUrl: './userlane-table.component.html',
   styleUrl: './userlane-table.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserlaneTableComponent implements OnInit {
   @Input() columns: ColumnInterface[] = [];

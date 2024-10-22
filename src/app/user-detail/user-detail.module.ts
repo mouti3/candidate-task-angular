@@ -7,15 +7,16 @@ import { StoreModule } from '@ngrx/store';
 import { userDetailReducer } from '../domain/stores/user-detail/reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { UserDetailsEffects } from '../domain/stores/user-detail/effects';
+import { UserDetailFormComponent } from './components/user-detail-form/user-detail-form.component';
 
 @NgModule({
-  declarations: [UserDetailComponent],
+  declarations: [UserDetailComponent, UserDetailFormComponent],
   imports: [
     CommonModule,
     UserDetailRoutingModule,
     SharedModule,
     StoreModule.forFeature('userDetail', userDetailReducer),
-    EffectsModule.forFeature([UserDetailsEffects])
+    EffectsModule.forFeature([UserDetailsEffects]),
   ]
 })
 export class UserDetailModule { }

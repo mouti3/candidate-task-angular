@@ -28,4 +28,27 @@ export class UserDetailsEffects {
       functional: true,
     }
   );
+
+  updateUserDetail$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(userDetailActions.updateUserDetail),
+        switchMap(({ userId,userDetails }) => {
+          return this.userService.updateUserDetails(userId,userDetails).pipe(
+            map((data: UserInterface) => {
+              return userDetailActions.updateUserDetailSuccess({ data: {
+                ...userDetails,
+                ...data
+            } });
+            }),
+            catchError((error) => {
+              return of(userDetailActions.updateUserDetailFailure(error));
+            })
+          );
+        })
+      ),
+    {
+      functional: true,
+    }
+  );
 }

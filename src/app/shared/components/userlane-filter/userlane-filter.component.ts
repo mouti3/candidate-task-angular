@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { FilterInterface } from '../../models/filter.interface';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSelectChange } from '@angular/material/select';
@@ -7,7 +7,8 @@ import { FilterValueInterface } from '../../models/filter-value.interface';
 @Component({
   selector: 'userlane-filter',
   templateUrl: './userlane-filter.component.html',
-  styleUrl: './userlane-filter.component.css'
+  styleUrl: './userlane-filter.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserlaneFilterComponent {
   @Input() filters!: FilterInterface[];

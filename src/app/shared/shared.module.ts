@@ -9,11 +9,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
-import { provideNativeDateAdapter } from '@angular/material/core';
+import {
+  provideNativeDateAdapter,
+} from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-
 
 @NgModule({
   declarations: [UserlaneTableComponent, UserlaneFilterComponent],
@@ -31,7 +32,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatDatepickerModule,
   ],
   providers: [
-    provideNativeDateAdapter()
+    provideNativeDateAdapter(),
   ],
   exports: [
     UserlaneTableComponent,
@@ -42,7 +43,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatInputModule,
     MatButtonModule,
     MatSelectModule,
-    MatDatepickerModule
-  ]
+    MatDatepickerModule,
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}

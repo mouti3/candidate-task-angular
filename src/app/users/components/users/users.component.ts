@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import {
@@ -32,6 +32,7 @@ import { GetUsersResponseInterface } from 'src/generated/models/getUsersResponse
   selector: 'userlane-users',
   templateUrl: './users.component.html',
   styleUrl: './users.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UsersComponent implements OnInit {
   public columnsConfig: ColumnInterface[] = [

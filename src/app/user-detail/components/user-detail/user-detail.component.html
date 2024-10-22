@@ -18,6 +18,9 @@
             BirthDate: <span>{{ user.birthDate | date : "MM/dd/yyyy" }}</span>
           </p>
         </div>
+        <div class="user-details-form" *ngIf="isEditMode">
+            <userlane-user-detail-form [user]="user" (onUpdateUser)="onUpdateUser(user.id,$event)"></userlane-user-detail-form>
+          </div>
       </mat-card-content>
       <mat-card-actions>
         <button mat-button (click)="onBackClicked()">Back</button>

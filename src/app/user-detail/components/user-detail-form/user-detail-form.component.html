@@ -1,0 +1,57 @@
+<form [formGroup]="form" (submit)="onSubmitForm()">
+    <div class="edit-form-container">
+      <mat-form-field appearance="fill">
+        <mat-label>UserName</mat-label>
+        <input matInput formControlName="username" placeholder="Enter username" />
+        <mat-error *ngIf="form.get('username')?.hasError('required')">
+          Username is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input
+          type="email"
+          matInput
+          formControlName="email"
+          placeholder="Enter Email"
+        />
+        <mat-error *ngIf="form.get('email')?.hasError('required')">
+          Email is required
+        </mat-error>
+        <mat-error *ngIf="form.get('email')?.hasError('email')">
+          Must be an email
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Role</mat-label>
+        <mat-select formControlName="role">
+          <mat-option value="admin">Admin</mat-option>
+          <mat-option value="moderator">Moderator</mat-option>
+          <mat-option value="user">User</mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get('role')?.hasError('required')">
+          Role is required
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Birth Date</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          formControlName="birthDate"
+          placeholder="Choose a date"
+          mask="00.00.0000"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker ></mat-datepicker>
+        <mat-error *ngIf="form.get('birthDate')?.hasError('required')">
+          Birth Date is required
+        </mat-error>
+      </mat-form-field>
+  
+      <button mat-button type="submit">save</button>
+    </div>
+  </form>
+  

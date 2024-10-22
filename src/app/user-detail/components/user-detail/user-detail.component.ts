@@ -1,15 +1,17 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { combineLatest, Observable } from 'rxjs';
+import { userDetailActions } from 'src/app/domain/stores/user-detail/actions';
 import { selectUserDetail, selectUserDetailError, selectUserDetailLoading } from 'src/app/domain/stores/user-detail/selectors';
 import { BackendErrorsInterface } from 'src/generated/models/backend-errors.interface';
 import { UserInterface } from 'src/generated/models/user.interface';
 
 @Component({
-  selector: 'app-user-detail',
+  selector: 'userlane-user-detail',
   templateUrl: './user-detail.component.html',
-  styleUrl: './user-detail.component.css'
+  styleUrl: './user-detail.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserDetailComponent {
   
@@ -31,9 +33,13 @@ export class UserDetailComponent {
   ngOnInit(): void {
   }
 
-  onUpdateUser(userDetails: UserInterface) {
+  onUpdateUser(userId: number,userDetails: UserInterface) {
     this.isEditMode = !this.isEditMode;
-  }
+    this.store.dispatch(userDetailActions.updateUserDetail({
+      userId: `${userId}`,
+      userDetails
+    }))
+  } 
 
   handleEditMode() {
     this.isEditMode = !this.isEditMode;
